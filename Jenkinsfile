@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        any {
+        docker {
             label 'docker'
             image 'python:3.8'
             args '-u root:root '
