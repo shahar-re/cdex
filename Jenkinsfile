@@ -11,6 +11,7 @@ pipeline {
                     label 'docker'  // The label of the Jenkins agent that will run the container
                 }
             }
+        }
             
         stage('Checkout GitHub Repository') {
             steps {
