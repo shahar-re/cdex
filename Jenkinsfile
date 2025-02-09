@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     // Check if Python is installed, if not, install it
-                        sh '''#!/bin/bash
+                        sh """#!/bin/bash
                             if ! command -v python3 &>/dev/null; then
                                 echo "Python3 not found, installing..."
                                 sudo apt-get update
@@ -22,26 +22,26 @@ pipeline {
                             else
                                 echo "Python3 already installed"
                             fi
-                        '''
+                        """
                 }
             }
         }
 
         stage('Setting virtual environment'){
                 script{
-                        sh '''#!/bin/bash
-                                python3 -m venv venv  # Create virtual environment
-                                source venv/bin/activate  # Activate virtual environment
-                        '''
+                        sh """#!/bin/bash
+                            python3 -m venv venv  # Create virtual environment
+                            source venv/bin/activate  # Activate virtual environment
+                        """
                 }
         }
 
         stage('Running the app'){
                 script{
-                        sh '''#!/bin/bash
-                                source venv/bin/activate  # Activate virtual environment
-                                python app.py  # Run the Python application
-                        '''
+                        sh """#!/bin/bash
+                            source venv/bin/activate  # Activate virtual environment
+                            python app.py  # Run the Python application
+                        """
                 }
         }
     }
