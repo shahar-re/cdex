@@ -1,18 +1,13 @@
 pipeline {
     agent {
-        label 'docker'  // Use an agent with Docker installed
+        docker {
+            label 'docker'
+            image 'python:3.9-slim'
+        }
     }
 
     stages {
-        stage('Run Docker Build') {
-            steps {
-                script {
-                    // Run a Docker container
-                    sh "docker build -d 'python:3.8-slim' ."  // Example Docker build command
-                }
-            }
-        }
-     
+        
         stage('Checkout GitHub Repository') {
             steps {
                 git url: 'https://github.com/shahar-re/cdex.git',
