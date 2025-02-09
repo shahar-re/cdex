@@ -12,9 +12,7 @@ pipeline {
                 }
             }
         }
-    }
-
-    stages {     
+     
         stage('Checkout GitHub Repository') {
             steps {
                 git url: 'https://github.com/shahar-re/cdex.git',
