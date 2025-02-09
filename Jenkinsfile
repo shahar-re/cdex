@@ -6,7 +6,7 @@ pipeline {
             steps {
                 git url: 'https://github.com/shahar-re/cdex.git',
                 branch: 'main',
-                credentialsId: 'github_cred'
+                credentialsId: 'github_cred1'
             }
         }
       
