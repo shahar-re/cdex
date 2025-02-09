@@ -1,7 +1,17 @@
 pipeline {
     agent {
-            image 'python:3.8-slim'
-            label 'docker'
+        label 'docker'  // Use an agent with Docker installed
+    }
+
+    stages {
+        stage('Run Docker Build') {
+            steps {
+                script {
+                    // Run a Docker container
+                    sh "docker build -d 'python:3.8-slim' ."  // Example Docker build command
+                }
+            }
+        }
     }
 
     stages {     
