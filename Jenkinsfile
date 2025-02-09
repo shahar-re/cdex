@@ -19,7 +19,6 @@ pipeline {
                                 echo "Python3 not found, installing..."
                                 sudo apt-get update
                                 sudo apt-get install -y python3  
-                                sudo apt install python3.12-venv
                             else
                                 echo "Python3 already installed"
                             fi
@@ -32,6 +31,8 @@ pipeline {
             steps{
                 script{
                         sh """#!/bin/bash
+                            sudo apt-get update
+                            sudo apt install python3.12-venv
                             python3 -m venv venv  # Create virtual environment
                             source venv/bin/activate  # Activate virtual environment
                         """
@@ -48,6 +49,16 @@ pipeline {
                         """
                 }
              }
+        }
+    }
+
+     post {
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+
+        failure {
+            echo 'Pipeline failed.'
         }
     }
 }
