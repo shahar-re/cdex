@@ -3,6 +3,7 @@ pipeline {
         docker {
             image 'python:3.8-slim'  // Use a pre-built Python image
         }
+    }
 
     stages {
         stage('Checkout GitHub Repository') {
