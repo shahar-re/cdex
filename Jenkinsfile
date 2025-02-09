@@ -3,6 +3,7 @@ pipeline {
         any {
             label 'docker'
             image 'python:3.8'
+            args '-u root:root '
         }
     }
 
@@ -20,6 +21,7 @@ pipeline {
             steps{
                 script{
                         sh """#!/bin/bash
+                            apt install python3.8-venv
                             python3 -m venv venv  # Create virtual environment
                             source venv/bin/activate  # Activate virtual environment
                         """
