@@ -28,21 +28,25 @@ pipeline {
         }
 
         stage('Setting virtual environment'){
+            steps{
                 script{
                         sh """#!/bin/bash
                             python3 -m venv venv  # Create virtual environment
                             source venv/bin/activate  # Activate virtual environment
                         """
                 }
+            }
         }
 
         stage('Running the app'){
+             steps{
                 script{
                         sh """#!/bin/bash
                             source venv/bin/activate  # Activate virtual environment
                             python app.py  # Run the Python application
                         """
                 }
+             }
         }
     }
 }
