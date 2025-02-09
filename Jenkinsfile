@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             label 'docker'
-            image 'python:3.9-slim'
+            image 'python:3.8'
         }
     }
 
