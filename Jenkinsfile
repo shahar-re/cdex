@@ -17,23 +17,12 @@ pipeline {
             }
         }
 
-        stage('Setting virtual environment'){
-            steps{
-                script{
-                        sh """#!/bin/bash
-                            pip3 install --user virtualenv
-                            virtualenv -p python3.8 venv
-                            source venv/bin/activate  # Activate virtual environment
-                        """
-                }
-            }
-        }
-
+       
         stage('Running the app'){
              steps{
                 script{
                         sh """#!/bin/bash
-                            source venv/bin/activate  # Activate virtual environment
+                            
                             python app.py  # Run the Python application
                         """
                 }
