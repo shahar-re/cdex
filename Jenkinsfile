@@ -1,11 +1,17 @@
 pipeline {
     agent {
-        docker {
-            image 'python:3.8-slim'  // Use a pre-built Python image
-        }
+        any
     }
 
     stages {
+        stage('Build') {
+            agent {
+                docker {
+                    image 'python:3.8-slim'  // Docker image to use
+                    label 'docker'  // The label of the Jenkins agent that will run the container
+                }
+            }
+            
         stage('Checkout GitHub Repository') {
             steps {
                 git url: 'https://github.com/shahar-re/cdex.git',
