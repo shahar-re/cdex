@@ -1,5 +1,8 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.8-slim'  // Use a pre-built Python image
+        }
 
     stages {
         stage('Checkout GitHub Repository') {
@@ -9,30 +12,11 @@ pipeline {
                 credentialsId: 'github_cred1'
             }
         }
-      
-        stage('Install Python') {
-            steps {
-                script {
-                    // Check if Python is installed, if not, install it
-                        sh """#!/bin/bash
-                            if ! command -v python3 &>/dev/null; then
-                                echo "Python3 not found, installing..."
-                                sudo apt-get update
-                                sudo apt-get install -y python3  
-                            else
-                                echo "Python3 already installed"
-                            fi
-                        """
-                }
-            }
-        }
 
         stage('Setting virtual environment'){
             steps{
                 script{
                         sh """#!/bin/bash
-                            sudo apt-get update
-                            sudo apt install python3.12-venv
                             python3 -m venv venv  # Create virtual environment
                             source venv/bin/activate  # Activate virtual environment
                         """
