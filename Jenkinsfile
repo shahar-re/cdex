@@ -21,8 +21,8 @@ pipeline {
             steps{
                 script{
                         sh """#!/bin/bash
-                            apt install python3.8-venv
-                            python3 -m venv venv  # Create virtual environment
+                            pip3 install --user virtualenv
+                            virtualenv -p python3.8 venv
                             source venv/bin/activate  # Activate virtual environment
                         """
                 }
