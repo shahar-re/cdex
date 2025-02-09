@@ -1,15 +1,16 @@
 pipeline {
-    agent {
-        docker {
-            label 'docker'
-            image 'python:3.8'
-            args '-u root:root '
-        }
-    }
-
+    agent any
     stages {
         
         stage('Checkout GitHub Repository') {
+            agent {
+                docker {
+                    label 'docker'
+                    image 'python:3.8'
+                    args '-u root:root '
+                }
+            }
+
             steps {
                 git url: 'https://github.com/shahar-re/cdex.git',
                 branch: 'main',
@@ -19,6 +20,14 @@ pipeline {
 
        
         stage('Running the app'){
+             agent {
+                docker {
+                    label 'docker'
+                    image 'python:3.8'
+                    args '-u root:root '
+                }
+            }
+
              steps{
                 script{
                         sh """#!/bin/bash
